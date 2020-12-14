@@ -8,14 +8,15 @@ import java.util.List;
 
 @Service
 public class RoleServiceImpl extends AbstractMapService<RoleDTO, Long> implements RoleService {
+
     @Override
     public List<RoleDTO> findAll() {
         return super.findAll();
     }
 
     @Override
-    public RoleDTO findById(Long aLong) {
-        return null;
+    public RoleDTO findById(Long id) {
+        return super.findById(id);
     }
 
     @Override

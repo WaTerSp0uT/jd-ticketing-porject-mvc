@@ -27,7 +27,7 @@ public class UserController {
 
 
         model.addAttribute("user", new UserDTO());
-        //datagenerator
+        //data generator
         //Since this class - UserController has dependecies from Role I need to inject dependencies
         model.addAttribute("roles", roleService.findAll());
         model.addAttribute("users", userService.findAll());
