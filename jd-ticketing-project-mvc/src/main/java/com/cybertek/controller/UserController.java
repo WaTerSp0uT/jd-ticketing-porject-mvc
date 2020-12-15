@@ -62,4 +62,15 @@ public class UserController {
         return "/user/update";
     }
 
+    @PostMapping("/update/{username}")
+    public String updateUser(@PathVariable("username") String username, Model model){
+
+        model.addAttribute("user", new UserDTO());
+        //data generator
+        //Since this class - UserController has dependecies from Role I need to inject dependencies
+        model.addAttribute("roles", roleService.findAll());
+        model.addAttribute("users", userService.findAll());
+
+        return "/user/create";
+    }
 }
