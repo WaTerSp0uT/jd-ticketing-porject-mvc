@@ -23,7 +23,8 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping({"/create","/add","/initialize"})
+    //,"/add","/initialize"
+    @GetMapping({"/create"})
     public String createUser(Model model){
 
 
@@ -36,17 +37,19 @@ public class UserController {
         return "/user/create";
     }
 
-    @PostMapping("create")
+    @PostMapping("/create")
     public String insertUser(UserDTO user, Model model){
 
         userService.save(user);
         //user, role users
-        model.addAttribute("user", new UserDTO());
-        model.addAttribute("roles", roleService.findAll());
-        model.addAttribute("users", userService.findAll());
+
+        //        model.addAttribute("user", new UserDTO());
+        //        model.addAttribute("roles", roleService.findAll());
+        //        model.addAttribute("users", userService.findAll());
 
 
-        return "/user/create";
+        //redirect will always run @GetMapping
+        return "redirect:/user/create"; //instead of going to create.html how about if I call the createuser method
 
     }
 
@@ -63,14 +66,18 @@ public class UserController {
     }
 
     @PostMapping("/update/{username}")
-    public String updateUser(@PathVariable("username") String username, Model model){
+    public String updateUser(@PathVariable("username") String username, UserDTO user, Model model){
+        //deleting updating
+        userService.update(user);
 
-        model.addAttribute("user", new UserDTO());
-        //data generator
-        //Since this class - UserController has dependecies from Role I need to inject dependencies
-        model.addAttribute("roles", roleService.findAll());
-        model.addAttribute("users", userService.findAll());
 
-        return "/user/create";
+
+//        model.addAttribute("user", new UserDTO());
+//        //data generator
+//        //Since this class - UserController has dependecies from Role I need to inject dependencies
+//        model.addAttribute("roles", roleService.findAll());
+//        model.addAttribute("users", userService.findAll());
+
+        return "redirect:/user/create";
     }
 }

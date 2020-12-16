@@ -33,7 +33,7 @@
 
                                     <!-- ------------------------FORM START----------------------------- -->
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs-validation" novalidate th:action="@{user/update/{id}(id=${user.userName})}" method="post" th:object="${user}" >
+                                    <form class="needs-validation" novalidate th:action="@{/user/update/{id}(id=${user.userName})}" method="post" th:object="${user}" >
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
@@ -119,7 +119,7 @@
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
                                                     <label>Choose a Role</label>
-                                                    <select th:field="*{role}" class="custom-select" required="required">
+                                                    <select name="role" class="custom-select" required="required">
                                                         <option th:value=" ''" th:text="Select"></option>
                                                         <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.description}"
                                                         th:selected="${role.id} == ${user.role.id}"></option>
