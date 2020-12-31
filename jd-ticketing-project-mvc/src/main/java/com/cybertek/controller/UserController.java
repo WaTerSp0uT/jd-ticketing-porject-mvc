@@ -80,8 +80,8 @@ public class UserController {
         return "redirect:/user/create";
     }
 
-    @DeleteMapping("/delete/{username}")
-    public String deleteUser(@PathVariable("username") String username, UserDTO user, Model model){
+    @GetMapping("/delete/{username}")
+    public String deleteUser(@PathVariable("username") String username){
         //deleting updating
         userService.deleteByID(username);
 
