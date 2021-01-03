@@ -5,6 +5,7 @@ import com.cybertek.enums.Status;
 import com.cybertek.service.ProjectService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -44,6 +45,7 @@ public class ProjectServiceImpl extends AbstractMapService<ProjectDTO, String> i
     public void complete(ProjectDTO project) {
 
         project.setProjectStatus(Status.COMPLETE);
+        project.setEndDate(LocalDate.now());
         super.save(project.getProjectCode(), project);
     }
 }
