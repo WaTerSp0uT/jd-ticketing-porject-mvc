@@ -56,13 +56,32 @@ public class TaskController {
     @GetMapping("/delete/{id}")
     public String deleteTask(@PathVariable("id") Long id){
 
-
-
         //deleting updating
         taskService.deleteByID(id);
 
         //redirect just avoids repete of actions like just comment above
         return "redirect:/task/create";
     }
+
+
+    @GetMapping("/update/{id}")
+    public String editTask(@PathVariable("id") Long id, Model model){
+        model.addAttribute("task", taskService.findById(id));
+        model.addAttribute("projects", projectService.findAll());
+        model.addAttribute("employees", userService.findEmployees());
+        model.addAttribute("tasks", taskService.findAll());
+
+        return "task/update";
+    }
+
+    @PostMapping("update/{id}")
+    public String updateTask(TaskDTO task, Model model){
+
+        taskService.update(task);
+
+
+        return "redirect:/task/create";
+    }
+
 
 }
