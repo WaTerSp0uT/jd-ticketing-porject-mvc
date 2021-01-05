@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/task")
@@ -44,6 +45,9 @@ public class TaskController {
 
         task.setTaskStatus(Status.OPEN);
         task.setAssignedDate(LocalDate.now());
+        //Before deleting I need to save unique ID
+        task.setId(UUID.randomUUID().getLeastSignificantBits());
+        System.out.println("Autogenrated ID: " + task.getId());
         taskService.save(task);
 
         return "redirect:/task/create";
@@ -51,6 +55,9 @@ public class TaskController {
 
     @GetMapping("/delete/{id}")
     public String deleteTask(@PathVariable("id") Long id){
+
+
+
         //deleting updating
         taskService.deleteByID(id);
 
