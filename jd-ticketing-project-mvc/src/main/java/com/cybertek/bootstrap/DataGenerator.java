@@ -25,13 +25,9 @@ public class DataGenerator implements CommandLineRunner {
     ProjectService projectService;
     TaskService taskService;
 
-    @Autowired
-    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService) {
-        this.roleService = roleService;
-        this.userService = userService;
-        this.projectService = projectService;
-    }
 
+
+    @Autowired
     public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService, TaskService taskService) {
         this.roleService = roleService;
         this.userService = userService;
@@ -63,7 +59,7 @@ public class DataGenerator implements CommandLineRunner {
         UserDTO user7 = new UserDTO("Maria",
                 "Ada", "maria@cybertek.com", "Abc4", true, "9996987412", employeeRole, Gender.FEMALE);
         UserDTO user8 = new UserDTO("Bill",
-                "Matt", "maria@cybertek.com", "Abc4", true, "8881239846", employeeRole, Gender.MALE);
+                "Matt", "bill@cybertek.com", "Abc4", true, "8881239846", employeeRole, Gender.MALE);
         userService.save(user1);
         userService.save(user2);
         userService.save(user3);
